@@ -1,0 +1,399 @@
+@prefix : <www.university.com#> .
+@prefix owl: <http://www.w3.org/2002/07/owl#> .
+@prefix rdf: <http://www.w3.org/1999/02/22-rdf-syntax-ns#> .
+@prefix xml: <http://www.w3.org/XML/1998/namespace> .
+@prefix xsd: <http://www.w3.org/2001/XMLSchema#> .
+@prefix rdfs: <http://www.w3.org/2000/01/rdf-schema#> .
+@base <www.university.com> .
+
+<www.university.com> rdf:type owl:Ontology .
+
+
+#################################################################
+#
+#    Object Properties
+#
+#################################################################
+
+
+###  http://www.university.com/university.owl#hasCourse
+
+<http://www.university.com/university.owl#hasCourse> rdf:type owl:ObjectProperty ;
+                                                     
+                                                     rdfs:range <http://www.university.com/university.owl#Course> ;
+                                                     
+                                                     rdfs:domain [ rdf:type owl:Class ;
+                                                                   owl:unionOf ( <http://www.university.com/university.owl#Prerequisite>
+                                                                                 <http://www.university.com/university.owl#Section>
+                                                                                 <http://www.university.com/university.owl#Teaching>
+                                                                               )
+                                                                 ] .
+
+
+
+###  http://www.university.com/university.owl#hasDepartment
+
+<http://www.university.com/university.owl#hasDepartment> rdf:type owl:ObjectProperty ;
+                                                         
+                                                         rdfs:range <http://www.university.com/university.owl#Department> ;
+                                                         
+                                                         rdfs:domain <http://www.university.com/university.owl#Instructor> .
+
+
+
+###  http://www.university.com/university.owl#hasInstructor
+
+<http://www.university.com/university.owl#hasInstructor> rdf:type owl:ObjectProperty ;
+                                                         
+                                                         rdfs:range <http://www.university.com/university.owl#Instructor> ;
+                                                         
+                                                         rdfs:domain [ rdf:type owl:Class ;
+                                                                       owl:unionOf ( <http://www.university.com/university.owl#Section>
+                                                                                     <http://www.university.com/university.owl#Teaching>
+                                                                                   )
+                                                                     ] .
+
+
+
+###  http://www.university.com/university.owl#hasLocation
+
+<http://www.university.com/university.owl#hasLocation> rdf:type owl:ObjectProperty ;
+                                                       
+                                                       rdfs:range <http://www.university.com/university.owl#Location> ;
+                                                       
+                                                       rdfs:domain <http://www.university.com/university.owl#Section> .
+
+
+
+###  http://www.university.com/university.owl#hasRequirement
+
+<http://www.university.com/university.owl#hasRequirement> rdf:type owl:ObjectProperty ;
+                                                          
+                                                          rdfs:range <http://www.university.com/university.owl#Course> ;
+                                                          
+                                                          rdfs:domain <http://www.university.com/university.owl#Prerequisite> .
+
+
+
+
+
+#################################################################
+#
+#    Data properties
+#
+#################################################################
+
+
+###  http://www.university.com/university.owl#crs_code
+
+<http://www.university.com/university.owl#crs_code> rdf:type owl:DatatypeProperty ;
+                                                    
+                                                    rdfs:range xsd:string ;
+                                                    
+                                                    rdfs:domain [ rdf:type owl:Class ;
+                                                                  owl:unionOf ( <http://www.university.com/university.owl#Course>
+                                                                                <http://www.university.com/university.owl#Prerequisite>
+                                                                                <http://www.university.com/university.owl#Section>
+                                                                                <http://www.university.com/university.owl#Teaching>
+                                                                              )
+                                                                ] .
+
+
+
+###  http://www.university.com/university.owl#crs_credits
+
+<http://www.university.com/university.owl#crs_credits> rdf:type owl:DatatypeProperty ;
+                                                       
+                                                       rdfs:domain <http://www.university.com/university.owl#Course> ;
+                                                       
+                                                       rdfs:range xsd:string .
+
+
+
+###  http://www.university.com/university.owl#crs_description
+
+<http://www.university.com/university.owl#crs_description> rdf:type owl:DatatypeProperty ;
+                                                           
+                                                           rdfs:domain <http://www.university.com/university.owl#Course> ;
+                                                           
+                                                           rdfs:range xsd:string .
+
+
+
+###  http://www.university.com/university.owl#crs_requires
+
+<http://www.university.com/university.owl#crs_requires> rdf:type owl:DatatypeProperty ;
+                                                        
+                                                        rdfs:domain <http://www.university.com/university.owl#Prerequisite> ;
+                                                        
+                                                        rdfs:range xsd:string .
+
+
+
+###  http://www.university.com/university.owl#crs_title
+
+<http://www.university.com/university.owl#crs_title> rdf:type owl:DatatypeProperty ;
+                                                     
+                                                     rdfs:domain <http://www.university.com/university.owl#Course> ;
+                                                     
+                                                     rdfs:range xsd:string .
+
+
+
+###  http://www.university.com/university.owl#dep_code
+
+<http://www.university.com/university.owl#dep_code> rdf:type owl:DatatypeProperty ;
+                                                    
+                                                    rdfs:range xsd:string ;
+                                                    
+                                                    rdfs:domain [ rdf:type owl:Class ;
+                                                                  owl:unionOf ( <http://www.university.com/university.owl#Department>
+                                                                                <http://www.university.com/university.owl#Instructor>
+                                                                              )
+                                                                ] .
+
+
+
+###  http://www.university.com/university.owl#dep_name
+
+<http://www.university.com/university.owl#dep_name> rdf:type owl:DatatypeProperty ;
+                                                    
+                                                    rdfs:domain <http://www.university.com/university.owl#Department> ;
+                                                    
+                                                    rdfs:range xsd:string .
+
+
+
+###  http://www.university.com/university.owl#grade_code
+
+<http://www.university.com/university.owl#grade_code> rdf:type owl:DatatypeProperty ;
+                                                      
+                                                      rdfs:domain <http://www.university.com/university.owl#Enrolment> ;
+                                                      
+                                                      rdfs:range xsd:string .
+
+
+
+###  http://www.university.com/university.owl#ins_fname
+
+<http://www.university.com/university.owl#ins_fname> rdf:type owl:DatatypeProperty ;
+                                                     
+                                                     rdfs:domain <http://www.university.com/university.owl#Instructor> ;
+                                                     
+                                                     rdfs:range xsd:string .
+
+
+
+###  http://www.university.com/university.owl#ins_id
+
+<http://www.university.com/university.owl#ins_id> rdf:type owl:DatatypeProperty ;
+                                                  
+                                                  rdfs:range xsd:string ;
+                                                  
+                                                  rdfs:domain [ rdf:type owl:Class ;
+                                                                owl:unionOf ( <http://www.university.com/university.owl#Instructor>
+                                                                              <http://www.university.com/university.owl#Section>
+                                                                              <http://www.university.com/university.owl#Teaching>
+                                                                            )
+                                                              ] .
+
+
+
+###  http://www.university.com/university.owl#ins_lname
+
+<http://www.university.com/university.owl#ins_lname> rdf:type owl:DatatypeProperty ;
+                                                     
+                                                     rdfs:domain <http://www.university.com/university.owl#Instructor> ;
+                                                     
+                                                     rdfs:range xsd:string .
+
+
+
+###  http://www.university.com/university.owl#loc_code
+
+<http://www.university.com/university.owl#loc_code> rdf:type owl:DatatypeProperty ;
+                                                    
+                                                    rdfs:range xsd:string ;
+                                                    
+                                                    rdfs:domain [ rdf:type owl:Class ;
+                                                                  owl:unionOf ( <http://www.university.com/university.owl#Location>
+                                                                                <http://www.university.com/university.owl#Section>
+                                                                              )
+                                                                ] .
+
+
+
+###  http://www.university.com/university.owl#loc_country
+
+<http://www.university.com/university.owl#loc_country> rdf:type owl:DatatypeProperty ;
+                                                       
+                                                       rdfs:domain <http://www.university.com/university.owl#Location> ;
+                                                       
+                                                       rdfs:range xsd:string .
+
+
+
+###  http://www.university.com/university.owl#loc_name
+
+<http://www.university.com/university.owl#loc_name> rdf:type owl:DatatypeProperty ;
+                                                    
+                                                    rdfs:domain <http://www.university.com/university.owl#Location> ;
+                                                    
+                                                    rdfs:range xsd:string .
+
+
+
+###  http://www.university.com/university.owl#sec_building
+
+<http://www.university.com/university.owl#sec_building> rdf:type owl:DatatypeProperty ;
+                                                        
+                                                        rdfs:domain <http://www.university.com/university.owl#Section> ;
+                                                        
+                                                        rdfs:range xsd:string .
+
+
+
+###  http://www.university.com/university.owl#sec_id
+
+<http://www.university.com/university.owl#sec_id> rdf:type owl:DatatypeProperty ;
+                                                  
+                                                  rdfs:range xsd:string ;
+                                                  
+                                                  rdfs:domain [ rdf:type owl:Class ;
+                                                                owl:unionOf ( <http://www.university.com/university.owl#Enrolment>
+                                                                              <http://www.university.com/university.owl#Section>
+                                                                            )
+                                                              ] .
+
+
+
+###  http://www.university.com/university.owl#sec_room
+
+<http://www.university.com/university.owl#sec_room> rdf:type owl:DatatypeProperty ;
+                                                    
+                                                    rdfs:domain <http://www.university.com/university.owl#Section> ;
+                                                    
+                                                    rdfs:range xsd:string .
+
+
+
+###  http://www.university.com/university.owl#sec_term
+
+<http://www.university.com/university.owl#sec_term> rdf:type owl:DatatypeProperty ;
+                                                    
+                                                    rdfs:domain <http://www.university.com/university.owl#Section> ;
+                                                    
+                                                    rdfs:range xsd:string .
+
+
+
+###  http://www.university.com/university.owl#sec_time
+
+<http://www.university.com/university.owl#sec_time> rdf:type owl:DatatypeProperty ;
+                                                    
+                                                    rdfs:domain <http://www.university.com/university.owl#Section> ;
+                                                    
+                                                    rdfs:range xsd:string .
+
+
+
+###  http://www.university.com/university.owl#stu_fname
+
+<http://www.university.com/university.owl#stu_fname> rdf:type owl:DatatypeProperty ;
+                                                     
+                                                     rdfs:domain <http://www.university.com/university.owl#Student> ;
+                                                     
+                                                     rdfs:range xsd:string .
+
+
+
+###  http://www.university.com/university.owl#stu_id
+
+<http://www.university.com/university.owl#stu_id> rdf:type owl:DatatypeProperty ;
+                                                  
+                                                  rdfs:range xsd:string ;
+                                                  
+                                                  rdfs:domain [ rdf:type owl:Class ;
+                                                                owl:unionOf ( <http://www.university.com/university.owl#Enrolment>
+                                                                              <http://www.university.com/university.owl#Student>
+                                                                            )
+                                                              ] .
+
+
+
+###  http://www.university.com/university.owl#stu_lname
+
+<http://www.university.com/university.owl#stu_lname> rdf:type owl:DatatypeProperty ;
+                                                     
+                                                     rdfs:domain <http://www.university.com/university.owl#Student> ;
+                                                     
+                                                     rdfs:range xsd:string .
+
+
+
+
+
+#################################################################
+#
+#    Classes
+#
+#################################################################
+
+
+###  http://www.university.com/university.owl#Course
+
+<http://www.university.com/university.owl#Course> rdf:type owl:Class .
+
+
+
+###  http://www.university.com/university.owl#Department
+
+<http://www.university.com/university.owl#Department> rdf:type owl:Class .
+
+
+
+###  http://www.university.com/university.owl#Enrolment
+
+<http://www.university.com/university.owl#Enrolment> rdf:type owl:Class .
+
+
+
+###  http://www.university.com/university.owl#Instructor
+
+<http://www.university.com/university.owl#Instructor> rdf:type owl:Class .
+
+
+
+###  http://www.university.com/university.owl#Location
+
+<http://www.university.com/university.owl#Location> rdf:type owl:Class .
+
+
+
+###  http://www.university.com/university.owl#Prerequisite
+
+<http://www.university.com/university.owl#Prerequisite> rdf:type owl:Class .
+
+
+
+###  http://www.university.com/university.owl#Section
+
+<http://www.university.com/university.owl#Section> rdf:type owl:Class .
+
+
+
+###  http://www.university.com/university.owl#Student
+
+<http://www.university.com/university.owl#Student> rdf:type owl:Class .
+
+
+
+###  http://www.university.com/university.owl#Teaching
+
+<http://www.university.com/university.owl#Teaching> rdf:type owl:Class .
+
+
+
+
+###  Generated by the OWL API (version 3.4.2) http://owlapi.sourceforge.net
+
